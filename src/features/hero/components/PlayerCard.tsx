@@ -75,7 +75,7 @@ export default function PlayerCard(_props: { activeComp?: number }) {
 
       {/* Card image */}
       <img
-        src="/andres-card-clean.png"
+        src={import.meta.env.BASE_URL + 'andres-card-c.png'}
         alt="Player Card"
         style={{
           position: 'relative',

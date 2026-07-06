@@ -227,9 +227,9 @@ export default function Contact({ language }: { language: Lang }) {
 
           <div className="mt-5 font-mono text-xs tracking-[0.2em] uppercase" style={{ color: 'var(--ucl-silver)' }}>
             ↓ {language === 'es' ? 'Descargar CV' : 'Download CV'}:{' '}
-            <a href="/cv/Andres-Guido-CV-ES.pdf" download className="transition-colors duration-300 hover:text-[#34D399]" style={{ color: 'var(--ucl-white)' }}>ES</a>
+            <a href={import.meta.env.BASE_URL + 'cv/Andres-Guido-CV-ES.pdf'} download className="transition-colors duration-300 hover:text-[#34D399]" style={{ color: 'var(--ucl-white)' }}>ES</a>
             {' · '}
-            <a href="/cv/Andres-Guido-CV-EN.pdf" download className="transition-colors duration-300 hover:text-[#34D399]" style={{ color: 'var(--ucl-white)' }}>EN</a>
+            <a href={import.meta.env.BASE_URL + 'cv/Andres-Guido-CV-EN.pdf'} download className="transition-colors duration-300 hover:text-[#34D399]" style={{ color: 'var(--ucl-white)' }}>EN</a>
           </div>
         </div>
 

@@ -146,7 +146,7 @@ export default function HeroSubtitle({ language }: { language: Lang }) {
             CV
           </span>
           <a
-            href="/cv/Andres-Guido-CV-ES.pdf"
+            href={import.meta.env.BASE_URL + 'cv/Andres-Guido-CV-ES.pdf'}
             download
             className="transition-colors duration-300 hover:text-[#34D399]"
             style={{ padding: '14px 10px', color: 'var(--ucl-white)' }}
@@ -155,7 +155,7 @@ export default function HeroSubtitle({ language }: { language: Lang }) {
           </a>
           <span style={{ color: 'var(--ucl-silver)', opacity: 0.5 }}>·</span>
           <a
-            href="/cv/Andres-Guido-CV-EN.pdf"
+            href={import.meta.env.BASE_URL + 'cv/Andres-Guido-CV-EN.pdf'}
             download
             className="transition-colors duration-300 hover:text-[#34D399]"
             style={{ padding: '14px 20px 14px 10px', color: 'var(--ucl-white)' }}

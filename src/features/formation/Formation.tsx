@@ -86,16 +86,16 @@ const PLAYERS: Player[] = [
       es: ['Dashboards', 'Portafolios', 'Herramientas internas', 'Visualización'],
       en: ['Dashboards', 'Portfolios', 'Internal tools', 'Visualization'],
     } },
-  { id: 7, initials: 'LC', name: 'LangChain', category: 'AI', color: '#7dd3fc', position: 'CM',
+  { id: 7, initials: 'MCP', name: 'MCP', category: 'AI', color: '#a78bfa', position: 'CM',
     description: {
-      es: 'Orquestación para prototipos y flujos LLM con herramientas, recuperación y pasos encadenados. Útil cuando el producto necesita razonar sobre contexto.',
-      en: 'Orchestration for LLM prototypes and workflows with tools, retrieval, and chained steps. Useful when a product needs to reason over context.',
+      es: 'Model Context Protocol: el estándar para conectar agentes de IA con herramientas y datos reales. Construyo servidores MCP que exponen sistemas internos a asistentes de forma segura.',
+      en: 'Model Context Protocol: the standard for wiring AI agents to real tools and data. I build MCP servers that safely expose internal systems to assistants.',
     },
-    modules: ['Chains', 'Tools', 'Retrieval', 'Agents', 'Memory', 'Tracing'],
-    stats: { impacto: 9.2, integracion: 8.8, flexibilidad: 9.1, velocidad: 8.3 },
+    modules: ['Servers', 'Tools', 'Resources', 'Prompts', 'stdio/HTTP', 'OAuth'],
+    stats: { impacto: 9.4, integracion: 9.6, flexibilidad: 9.2, velocidad: 8.8 },
     useCases: {
-      es: ['RAG', 'Agentes', 'Asistentes', 'Flujos multi-paso'],
-      en: ['RAG', 'Agents', 'Assistants', 'Multi-step flows'],
+      es: ['Agentes con herramientas', 'Integraciones IA', 'Automatización', 'Asistentes internos'],
+      en: ['Tool-using agents', 'AI integrations', 'Automation', 'Internal assistants'],
     } },
   { id: 8, initials: 'NJ', name: 'Node.js', category: 'Backend', color: '#339933', position: 'CM',
     description: {
@@ -828,7 +828,7 @@ function FootballPitch({ children, theme, spotlightPos }: {
         style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 3 }}
       >
         <img
-          src="/ucl-ball.png"
+          src={import.meta.env.BASE_URL + 'ucl-ball.png'}
           alt=""
           style={{
             width: '22px', height: '22px',

@@ -118,7 +118,7 @@ export default function Hero({ language, activeComp }: { language: Lang; activeC
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'url(/stadium-crowd.jpg)',
+          backgroundImage: `url(${import.meta.env.BASE_URL}stadium-crowd-c.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%',
           opacity: 0.06,
@@ -135,7 +135,7 @@ export default function Hero({ language, activeComp }: { language: Lang; activeC
           width: '520px',
           height: '520px',
           opacity: 0.04,
-          backgroundImage: 'url(/ucl-logo.svg)',
+          backgroundImage: `url(${import.meta.env.BASE_URL}ucl-logo.svg)`,
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',

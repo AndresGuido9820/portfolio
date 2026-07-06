@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useLenis } from './shared/hooks/useLenis'
 import ScrollProgress from './shared/components/ScrollProgress'
 import Navbar from './shared/components/Navbar'
-import TunnelTransition from './features/intro/TunnelTransition'
+const TunnelTransition = lazy(() => import('./features/intro/TunnelTransition'))
 import Hero from './features/hero/Hero'
 import About from './features/about/About'
 import Experience from './features/experience/Experience'
-import TrophyShowcase from './features/palmares/TrophyShowcase'
+const TrophyShowcase = lazy(() => import('./features/palmares/TrophyShowcase'))
 import Projects from './features/projects/Projects'
 import Formation from './features/formation/Formation'
 import Contact from './features/contact/Contact'
@@ -57,12 +57,14 @@ export default function App() {
       <ScrollProgress />
 
       {phase === 'gate' && (
+        <Suspense fallback={<div className="fixed inset-0 z-[95]" style={{ background: '#050607' }} />}>
         <TunnelTransition
           language={language}
           onReveal={() => { markSeen(); setMainVisible(true) }}
           onDone={() => setPhase('main')}
           onSkip={skipToMain}
         />
+        </Suspense>
       )}
 
       {mainVisible && (
@@ -109,7 +111,9 @@ export default function App() {
             <Hero language={language} activeComp={ACTIVE_COMP} />
             <About language={language} />
             <Experience language={language} />
-            <TrophyShowcase language={language} />
+            <Suspense fallback={<div id="palmares" style={{ minHeight: '60vh' }} />}>
+              <TrophyShowcase language={language} />
+            </Suspense>
             <Projects language={language} />
             <Formation activeComp={ACTIVE_COMP} language={language} />
             <Contact language={language} />
