@@ -97,6 +97,7 @@ export interface Project {
   description: { es: string; en: string }
   tech: string[]
   github?: string
+  demo?: string
   kind: {
     es: string
     en: string
@@ -154,6 +155,7 @@ export const PROJECTS: Project[] = [
     },
     tech: ['Python', 'TensorFlow', 'TF.js', 'Computer Vision', 'Recommenders'],
     github: 'https://github.com/AndresGuido9820/sistema-transporte-inteligente',
+    demo: 'https://andresguido9820.github.io/sistema-transporte-inteligente/',
     kind: { es: 'Académico · Demo en vivo', en: 'Academic · Live demo' },
     featured: true,
     category: 'AI',
@@ -167,6 +169,7 @@ export const PROJECTS: Project[] = [
     },
     tech: ['Python', 'Jupyter', 'DEAP', 'ACO/GA', 'GitHub Actions'],
     github: 'https://github.com/AndresGuido9820/optimizacion-metaheuristicas',
+    demo: 'https://andresguido9820.github.io/optimizacion-metaheuristicas/',
     kind: { es: 'Académico / Público', en: 'Academic / Public' },
     featured: false,
     category: 'Research',

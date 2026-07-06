@@ -196,18 +196,31 @@ export default function ProjectCard({ project, language, onRelatedClick }: Props
       )}
 
       {/* Footer */}
-      {project.github && (
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-mono text-xs transition-opacity hover:opacity-70 w-fit"
-          style={{ color: 'var(--ucl-gold)' }}
-        >
-          <GitBranch size={12} />
-          {language === 'es' ? 'Código fuente' : 'Source Code'}
-        </a>
-      )}
+      <div className="flex items-center gap-4 flex-wrap">
+        {project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 font-mono text-xs font-bold px-3 py-1.5 rounded-lg transition-all duration-300 hover:scale-[1.03] w-fit"
+            style={{ color: '#06251A', background: 'linear-gradient(145deg, #10B981, #059669)' }}
+          >
+            {language === 'es' ? '▶ Ver en vivo' : '▶ Live demo'}
+          </a>
+        )}
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 font-mono text-xs transition-opacity hover:opacity-70 w-fit"
+            style={{ color: 'var(--ucl-gold)' }}
+          >
+            <GitBranch size={12} />
+            {language === 'es' ? 'Código fuente' : 'Source Code'}
+          </a>
+        )}
+      </div>
 
       {/* Gold bottom border on hover */}
       <div
