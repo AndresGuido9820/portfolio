@@ -13,14 +13,14 @@ function HeroStats({ language }: { language: Lang }) {
   const ref = useRef<HTMLDivElement>(null)
   const items = language === 'es'
     ? [
-        { icon: Trophy, value: '3+',  label: 'Años' },
-        { icon: Code2,  value: '10+', label: 'Proyectos' },
-        { icon: Star,   value: 'AWS', label: 'Cloud / IA' },
+        { icon: Trophy, value: '3+',    label: 'Años' },
+        { icon: Code2,  value: '20h',   label: 'Ahorro semanal con IA' },
+        { icon: Star,   value: 'Miles', label: 'Dispositivos IoT' },
       ]
     : [
-        { icon: Trophy, value: '3+',  label: 'Years' },
-        { icon: Code2,  value: '10+', label: 'Projects' },
-        { icon: Star,   value: 'AWS', label: 'Cloud / AI' },
+        { icon: Trophy, value: '3+',    label: 'Years' },
+        { icon: Code2,  value: '20h',   label: 'Weekly hours saved w/ AI' },
+        { icon: Star,   value: '1000s', label: 'IoT devices (telemetry)' },
       ]
 
   useEffect(() => {

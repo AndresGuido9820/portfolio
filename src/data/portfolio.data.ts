@@ -31,7 +31,7 @@ export const EXPERIENCE: Experience[] = [
     type: 'full-time',
     highlights: [
       'Led company-wide AI integration strategy with LLMs, RAG, and autonomous agents across all business units.',
-      'Deployed end-to-end AI automation pipelines cutting manual effort in procurement, reporting, and support.',
+      'Deployed end-to-end AI automation pipelines saving 10–20 hours of manual work per week — reports that took hours now ship in minutes.',
       'Built intelligent document processing systems for automated extraction and structured data generation.',
       'Defined AI roadmap with leadership, establishing governance standards for ethical production AI.',
     ],
@@ -45,7 +45,7 @@ export const EXPERIENCE: Experience[] = [
     type: 'full-time',
     highlights: [
       'Designed serverless microservices architecture integrating IoT data from Ubidots.',
-      'Built IoT data pipeline on AWS (IoT Core, Lambda, S3, CloudFormation) for computer vision training datasets.',
+      'Built an AWS pipeline (IoT Core, Lambda, S3, CloudFormation) receiving telemetry from thousands of IoT devices for computer-vision datasets.',
       'Implemented WhatsApp notification and device query services.',
       'Applied Infrastructure as Code with AWS CloudFormation and CI/CD workflows.',
     ],
@@ -110,8 +110,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Pipeline de Datos IoT en AWS',
     description: {
-      es: 'Pipeline serverless de punta a punta (IoT Core, Lambda, S3, CloudFormation) que recolecta, valida y almacena mediciones de peso e imágenes sincronizadas desde dispositivos en campo, construyendo un dataset listo para entrenar modelos de visión por computador.',
-      en: 'End-to-end serverless pipeline (IoT Core, Lambda, S3, CloudFormation) that collects, validates and stores weight measurements and synchronized images from field devices, building a dataset ready to train computer-vision models.'
+      es: 'Pipeline serverless de punta a punta (IoT Core, Lambda, S3, CloudFormation) que recibe telemetría de miles de dispositivos IoT en campo, validando y almacenando mediciones e imágenes sincronizadas para construir un dataset listo para entrenar modelos de visión por computador.',
+      en: 'End-to-end serverless pipeline (IoT Core, Lambda, S3, CloudFormation) receiving telemetry from thousands of IoT devices in the field, validating and storing synchronized measurements and images to build a dataset ready to train computer-vision models.'
     },
     tech: ['AWS IoT Core', 'Lambda', 'S3', 'CloudFormation', 'MQTT'],
     kind: { es: 'Profesional · Sento', en: 'Professional · Sento' },
@@ -122,8 +122,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Automatización con IA',
     description: {
-      es: 'Sistemas con LLMs, RAG y agentes autónomos que reducen trabajo manual en compras, reportes y soporte: procesamiento inteligente de documentos (extracción, resumen, datos estructurados) y conexión de herramientas internas con APIs externas en pipelines unificados.',
-      en: 'Systems with LLMs, RAG and autonomous agents that cut manual work in procurement, reporting and support: intelligent document processing (extraction, summarization, structured data) and internal tools wired to external APIs in unified pipelines.'
+      es: 'Sistemas con LLMs, RAG y agentes autónomos que ahorran entre 10 y 20 horas de trabajo manual a la semana en compras, reportes y soporte — reportes que tomaban horas ahora salen en minutos. Procesamiento inteligente de documentos y herramientas internas conectadas con APIs externas en pipelines unificados.',
+      en: 'Systems with LLMs, RAG and autonomous agents saving 10–20 hours of manual work per week across procurement, reporting and support — reports that took hours now ship in minutes. Intelligent document processing and internal tools wired to external APIs in unified pipelines.'
     },
     tech: ['LLMs', 'RAG', 'Agentes', 'Python', 'FastAPI'],
     kind: { es: 'Profesional · Sento', en: 'Professional · Sento' },
