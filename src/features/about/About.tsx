@@ -2,26 +2,10 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SectionTitle from '../../shared/components/SectionTitle'
-import { PERSONAL, EDUCATION } from '../../data/portfolio.data'
+import { EDUCATION } from '../../data/portfolio.data'
 import type { Lang } from '../../shared/i18n'
 
 gsap.registerPlugin(ScrollTrigger)
-
-function StatCard({ value, label }: { value: string; label: string }) {
-  return (
-    <div
-      className="p-6 transition-all duration-500 hover:scale-105"
-      style={{ borderLeft: '2px solid var(--ucl-gold)', background: 'transparent' }}
-    >
-      <div className="font-display text-5xl" style={{ color: 'var(--ucl-gold)' }}>
-        {value}
-      </div>
-      <div className="font-mono text-xs tracking-widest uppercase mt-2" style={{ color: 'var(--ucl-silver)' }}>
-        {label}
-      </div>
-    </div>
-  )
-}
 
 export default function About({ language }: { language: Lang }) {
   const contentRef = useRef<HTMLDivElement>(null)
