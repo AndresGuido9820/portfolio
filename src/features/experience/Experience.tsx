@@ -1,0 +1,269 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import SectionTitle from '../../shared/components/SectionTitle'
+import { EXPERIENCE } from '../../data/portfolio.data'
+import type { Lang } from '../../shared/i18n'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const EXPERIENCE_ES: Array<{ role: string; highlights: string[] }> = [
+  {
+    role: 'Líder de Implementaciones con IA',
+    highlights: [
+      'Lidero la estrategia de integración de IA con LLMs, RAG y agentes autónomos en distintas áreas del negocio.',
+      'Despliego pipelines de automatización con IA para reducir trabajo manual en compras, reportes y soporte.',
+      'Construyo sistemas inteligentes de procesamiento documental para extracción y generación de datos estructurados.',
+    ],
+  },
+  {
+    role: 'Ingeniero de Software',
+    highlights: [
+      'Diseñé arquitectura serverless de microservicios para integrar datos IoT desde plataformas de telemetría.',
+      'Construí pipelines de datos IoT en AWS para alimentar datasets de visión por computador.',
+      'Implementé servicios de notificación por WhatsApp y consulta de dispositivos.',
+    ],
+  },
+  {
+    role: 'Desarrollador Full Stack',
+    highlights: [
+      'Construí un sistema de chat con IA usando modelos de razonamiento avanzado.',
+      'Desplegué procesamiento documental para ingestión y análisis de archivos en múltiples formatos.',
+      'Diseñé un agente autónomo para generación automática de reportes desde datos estructurados.',
+    ],
+  },
+  {
+    role: 'Monitor — Gestión de Proyectos de Software',
+    highlights: [
+      'Acompañé estudiantes en la implementación de Scrum y metodologías ágiles.',
+      'Creé materiales educativos y supervisé la ejecución de proyectos.',
+      'Apoyé el desarrollo profesional de estudiantes en proyectos con empresas externas.',
+    ],
+  },
+  {
+    role: 'Auxiliar de Investigación — Firmware y Datos',
+    highlights: [
+      'Participé en el desarrollo del firmware del prototipo para control de movimiento y sensores.',
+      'Construí la recolección y analítica de datos experimentales en tiempo real.',
+      'Redacté junto al equipo un artículo científico con los hallazgos y la metodología.',
+    ],
+  },
+]
+
+export default function Experience({ language }: { language: Lang }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+
+    const ctx = gsap.context(() => {
+      // Animate the vertical center line
+      gsap.fromTo(
+        '.exp-center-line',
+        { scaleY: 0, transformOrigin: 'top' },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+
+      // Animate dot nodes
+      gsap.fromTo(
+        '.exp-node',
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+          ease: 'back.out(2)',
+          delay: 0.4,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+
+      // Animate cards
+      const cards = el.querySelectorAll('.timeline-card')
+      cards.forEach((card, i) => {
+        const isEven = i % 2 === 0
+        gsap.fromTo(
+          card,
+          { x: isEven ? -60 : 60, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      })
+    }, el)
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section id="experience" className="relative section-padding grass-stripes">
+      <div className="max-w-7xl mx-auto">
+        <SectionTitle
+          label={language === 'es' ? '02 — Experiencia' : '02 — Experience'}
+          title={language === 'es' ? 'Historial de Partido' : 'Match History'}
+          subtitle={language === 'es'
+            ? 'Cada rol suma experiencia real construyendo software, automatización e infraestructura.'
+            : 'Every role adds real experience building software, automation, and infrastructure.'}
+        />
+
+        <div ref={containerRef} className="relative">
+          {/* Center vertical line */}
+          <div
+            className="exp-center-line absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
+            style={{
+              background: 'linear-gradient(to bottom, var(--ucl-gold), rgba(201,162,39,0.1))',
+            }}
+          />
+
+          {/* Timeline items */}
+          <div className="flex flex-col gap-12">
+            {EXPERIENCE.map((exp, index) => {
+              const isEven = index % 2 === 0
+              return (
+                <div key={index} className="relative flex items-start gap-4">
+                  {/* Left content (even) */}
+                  <div style={{ flex: 1, textAlign: 'right' }}>
+                    {isEven && (
+                      <div className="timeline-card card-glass p-6 md:p-8 inline-block text-left transition-all duration-500 hover:scale-[1.02] group max-w-lg" style={{ background: 'transparent', backdropFilter: 'none' }}>
+                        <CardContent exp={exp} index={index} language={language} />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Center node */}
+                  <div className="shrink-0 flex flex-col items-center" style={{ width: '40px' }}>
+                    <div
+                      className="exp-node w-4 h-4 rounded-full border-2 z-10"
+                      style={{
+                        background: 'var(--ucl-gold)',
+                        borderColor: 'var(--ucl-gold-light)',
+                        boxShadow: '0 0 15px var(--ucl-gold), 0 0 30px rgba(201,162,39,0.4)',
+                      }}
+                    />
+                  </div>
+
+                  {/* Right content (odd) */}
+                  <div style={{ flex: 1 }}>
+                    {!isEven && (
+                      <div className="timeline-card card-glass p-6 md:p-8 inline-block text-left transition-all duration-500 hover:scale-[1.02] group max-w-lg" style={{ background: 'transparent', backdropFilter: 'none' }}>
+                        <CardContent exp={exp} index={index} language={language} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CardContent({ exp, index, language }: { exp: typeof EXPERIENCE[0]; index: number; language: Lang }) {
+  const TYPE_COLORS: Record<string, string> = {
+    'full-time': '#34D399',
+    'part-time': '#9BA1A6',
+    'research': '#9BA1A6',
+  }
+  const TYPE_LABELS: Record<Lang, Record<typeof exp.type, string>> = {
+    es: {
+      'full-time': 'TIEMPO COMPLETO',
+      'part-time': 'MEDIO TIEMPO',
+      research: 'INVESTIGACIÓN',
+    },
+    en: {
+      'full-time': 'FULL TIME',
+      'part-time': 'PART TIME',
+      research: 'RESEARCH',
+    },
+  }
+  const localized = language === 'es' ? EXPERIENCE_ES[index] : undefined
+  const highlights = localized?.highlights ?? exp.highlights.slice(0, 3)
+
+  return (
+    <>
+      <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+        <span
+          className="font-mono text-xs tracking-widest px-2 py-0.5"
+          style={{
+            color: TYPE_COLORS[exp.type],
+            border: `1px solid ${TYPE_COLORS[exp.type]}50`,
+          }}
+        >
+          {TYPE_LABELS[language][exp.type]}
+        </span>
+        <span
+          className="font-mono text-xs px-2 py-0.5 rounded-md"
+          style={{
+            color: 'var(--ucl-silver)',
+            background: 'var(--chipbg)',
+            border: '1px solid var(--chipline)',
+            letterSpacing: '0.08em',
+          }}
+        >
+          {exp.period}
+        </span>
+      </div>
+
+      <h3
+        className="font-display text-xl md:text-2xl leading-tight uppercase mb-1"
+        style={{ color: 'var(--ucl-white)' }}
+      >
+        {localized?.role ?? exp.role}
+      </h3>
+
+      <div className="font-mono text-xs mb-4" style={{ color: '#34D399' }}>
+        {exp.company} · {exp.location}
+      </div>
+
+      <ul className="space-y-1.5 mb-4">
+        {highlights.map((h, i) => (
+          <li key={i} className="flex items-start gap-2 text-xs leading-relaxed" style={{ color: 'var(--ucl-silver)' }}>
+            <span className="mt-1.5 shrink-0 w-1 h-1 rounded-full" style={{ background: 'var(--ucl-gold)' }} />
+            {h}
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-1.5">
+        {exp.tech.map((t) => (
+          <span
+            key={t}
+            className="font-mono text-xs px-2 py-0.5 rounded-md"
+            style={{
+              border: '1px solid var(--chipline)',
+              background: 'var(--chipbg)',
+              color: 'var(--ucl-silver)',
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </>
+  )
+}

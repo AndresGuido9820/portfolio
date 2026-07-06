@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+/* =============================================
+   CHAMPIONS LEAGUE THEME — GLOBAL STYLES
+   ============================================= */
+
+:root {
+  /* ESTADIO NOCTURNO — dark theme (default). Light theme overrides below. */
+  color-scheme: dark;
+
+  --ink:            #0A0B0D;   /* base background */
+  --surface:        #14161A;   /* cards / panels */
+  --surface-2:      #1B1E23;   /* raised surface */
+  --line:           rgba(255,255,255,0.08);  /* hairline borders */
+  --chipline:       rgba(255,255,255,0.12);  /* chip borders */
+  --chipbg:         rgba(255,255,255,0.04);  /* chip fills */
+  --glass:          rgba(16,18,22,0.60);     /* floating surfaces */
+  --glass-strong:   rgba(16,18,22,0.85);
+
+  --ucl-black:      #0A0B0D;   /* base bg / navbar */
+  --ucl-navy:       #14161A;   /* surface */
+  --ucl-blue:       #0A0B0D;   /* main bg */
+  --ucl-blue-mid:   #10B981;   /* accent (pitch green) */
+  --ucl-blue-light: #34D399;   /* accent light */
+
+  /* Accents — restrained emerald + official gold (ties UI to the 3D trophies) */
+  --ucl-lime:       #10B981;
+  --ucl-pink:       #34D399;
+  --ucl-cyan:       rgba(155,161,166,0.9);
+  --gold:           #D9B75A;   /* achievement / featured */
+
+  /* "gold" tokens repurposed as emerald accent for featured/links */
+  --ucl-gold:       #34D399;
+  --ucl-gold-light: #6EE7B7;
+  --ucl-gold-dim:   rgba(16,185,129,0.35);
+
+  --ucl-silver: #9BA1A6;   /* muted text */
+  --ucl-white:  #E7E9EA;   /* primary text */
+
+  /* Pitch decoration (hero lines / section stripes) */
+  --pitch-stroke: rgba(255,255,255,0.10);
+  --pitch-accent: rgba(16,185,129,0.45);
+  --stripe-a: rgba(0,25,8,0.09);
+  --stripe-b: rgba(0,38,12,0.05);
+
+  /* Player card frame — translucent glass */
+  --card-frame-a: rgba(20,22,26,0.50);
+  --card-frame-b: rgba(10,11,13,0.60);
+  --card-glow: rgba(16,185,129,0.08);
+
+  /* Formation pitch — night match under floodlights */
+  --pitch-grass-a: #11301d;
+  --pitch-grass-b: #164027;
+  --pitch-dimmer: rgba(0,0,0,0.42);
+  --pitch-vignette: rgba(0,0,0,0.55);
+  --pitch-chalk: rgba(255,255,255,0.55);
+
+  --font-display: 'Geist', sans-serif;
+  --font-body:   'Geist', sans-serif;
+  --font-mono:   'Geist Mono', monospace;
+}
+
+/* DÍA DE PARTIDO — light theme. The 3D night scenes (tunnel, pitch) stay dark by design. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --ink:            #F3F5F2;   /* grass-tinted off-white */
+  --surface:        #FFFFFF;
+  --surface-2:      #EDF0EC;
+  --line:           rgba(15,23,19,0.12);
+  --chipline:       rgba(15,23,19,0.16);
+  --chipbg:         rgba(6,80,55,0.05);
+  --glass:          rgba(255,255,255,0.72);
+  --glass-strong:   rgba(255,255,255,0.88);
+
+  --ucl-black:      #F3F5F2;
+  --ucl-navy:       #FFFFFF;
+  --ucl-blue:       #F3F5F2;
+  --ucl-blue-mid:   #059669;
+  --ucl-blue-light: #047857;
+
+  --ucl-lime:       #059669;
+  --ucl-pink:       #047857;
+  --ucl-cyan:       rgba(85,93,99,0.9);
+  --gold:           #A16207;
+
+  --ucl-gold:       #047857;   /* deep emerald reads on white */
+  --ucl-gold-light: #059669;
+  --ucl-gold-dim:   rgba(4,120,87,0.30);
+
+  --ucl-silver: #555D63;
+  --ucl-white:  #15181B;
+
+  /* Pitch decoration on light — deep green chalk on grass-tinted white */
+  --pitch-stroke: rgba(6,95,70,0.18);
+  --pitch-accent: rgba(4,120,87,0.5);
+  --stripe-a: rgba(5,105,70,0.05);
+  --stripe-b: rgba(5,105,70,0.02);
+
+  /* Player card frame — translucent white glass on matchday */
+  --card-frame-a: rgba(255,255,255,0.55);
+  --card-frame-b: rgba(255,255,255,0.35);
+  --card-glow: rgba(16,185,129,0.04);
+
+  /* Formation pitch — daylight grass on matchday */
+  --pitch-grass-a: #3f9e63;
+  --pitch-grass-b: #47ad6d;
+  --pitch-dimmer: rgba(0,0,0,0.30);
+  --pitch-vignette: rgba(0,40,20,0.28);
+  --pitch-chalk: rgba(255,255,255,0.85);
+}
+
+/* NOTE: Tailwind v4 preflight already resets margins/paddings.
+   An unlayered `* { margin:0; padding:0 }` here would override ALL
+   layered Tailwind utilities (mx-auto, px-*, py-*, mt-*) — never re-add it. */
+* {
+  box-sizing: border-box;
+}
+
+/* Native smooth scrolling intentionally OFF — Lenis drives scrolling.
+   Reduced-motion users get instant jumps (see media query below). */
+
+::selection {
+  background: rgba(16, 185, 129, 0.35);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #34D399;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--ucl-blue);
+  color: var(--ucl-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--ucl-lime);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ucl-lime);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+}
+
+body:hover .cursor { opacity: 1; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ucl-black); }
+::-webkit-scrollbar-thumb {
+  background: var(--ucl-lime);
+  border-radius: 2px;
+}
+
+/* Star field */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes float-star {
+  0% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-15px) translateX(8px); }
+  66% { transform: translateY(8px) translateX(-5px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes drift {
+  from { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to { transform: translateY(-100px) translateX(40px); opacity: 0; }
+}
+
+/* Gold shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Glitch */
+@keyframes glitch {
+  0% { clip-path: inset(80% 0 0 0); transform: translate(-2px, -2px); }
+  10% { clip-path: inset(10% 0 70% 0); transform: translate(2px, 2px); }
+  20% { clip-path: inset(50% 0 30% 0); transform: translate(-1px, 1px); }
+  30% { clip-path: inset(20% 0 60% 0); transform: translate(1px, -1px); }
+  40% { clip-path: inset(60% 0 10% 0); transform: translate(-2px, 2px); }
+  50% { clip-path: inset(30% 0 50% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(70% 0 20% 0); transform: translate(-1px, 2px); }
+  70% { clip-path: inset(5% 0 80% 0); transform: translate(1px, -1px); }
+  80% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 1px); }
+  90% { clip-path: inset(15% 0 65% 0); transform: translate(2px, 2px); }
+  100% { clip-path: inset(80% 0 0 0); transform: translate(-2px, -2px); }
+}
+
+/* Pulse ring */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+/* Gold line animation */
+@keyframes grow-line {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Waveform audio bars */
+@keyframes waveBar {
+  from { transform: scaleY(0.3); }
+  to { transform: scaleY(1); }
+}
+
+/* Intro scanline fade */
+@keyframes scanFade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Broadcast line draws left → right */
+@keyframes broadcast-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Stadium floodlight subtle pulse */
+@keyframes floodlight-pulse {
+  0%, 100% { opacity: 0.07; }
+  50%       { opacity: 0.16; }
+}
+
+/* Navbar active dot pulse */
+@keyframes nav-dot-pulse {
+  0%, 100% { box-shadow: 0 0 4px #10B981; }
+  50%       { box-shadow: 0 0 12px #10B981, 0 0 24px rgba(16,185,129,0.4); }
+}
+
+/* Football items marquee — infinite horizontal scroll */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Individual item spin */
+@keyframes spin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes spin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+
+/* Football pitch grass stripe pattern — alternate dark/light rows */
+.grass-stripes {
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--stripe-a) 0px,
+    var(--stripe-a) 48px,
+    var(--stripe-b) 48px,
+    var(--stripe-b) 96px
+  );
+}
+
+/* Utility classes */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.text-gold { color: var(--ucl-gold); }
+.text-gold-light { color: var(--ucl-gold-light); }
+.text-silver { color: var(--ucl-silver); }
+
+.bg-ucl-black { background-color: var(--ucl-black); }
+.bg-ucl-navy { background-color: var(--ucl-navy); }
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ucl-gold-dim) 0%,
+    var(--ucl-gold-light) 40%,
+    var(--ucl-gold) 50%,
+    var(--ucl-gold-light) 60%,
+    var(--ucl-gold-dim) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.gold-glow {
+  text-shadow: 0 0 20px rgba(201, 162, 39, 0.8), 0 0 40px rgba(201, 162, 39, 0.4);
+}
+
+.card-glass {
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  transition: background 0.45s ease, border-color 0.3s ease;
+}
+
+.card-glass:hover {
+  border-color: var(--ucl-gold-dim);
+  background: var(--glass-strong);
+}
+
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-padding {
+    padding: 10rem 6rem;
+  }
+}
