@@ -156,7 +156,7 @@ export const PROJECTS: Project[] = [
     tech: ['Python', 'TensorFlow', 'TF.js', 'Computer Vision', 'Recommenders'],
     github: 'https://github.com/AndresGuido9820/sistema-transporte-inteligente',
     demo: 'https://andresguido9820.github.io/sistema-transporte-inteligente/',
-    kind: { es: 'Académico · Demo en vivo', en: 'Academic · Live demo' },
+    kind: { es: 'Académico', en: 'Academic' },
     featured: true,
     category: 'AI',
     related: ['Optimización Metaheurística'],
