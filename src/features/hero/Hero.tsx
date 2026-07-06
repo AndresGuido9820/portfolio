@@ -108,8 +108,8 @@ function ScrollIndicator({ language }: { language: Lang }) {
 
 export default function Hero({ language, activeComp }: { language: Lang; activeComp: number }) {
   const title = language === 'es'
-    ? 'Ingeniero de Software · Líder de IA'
-    : 'Software Engineer · AI Lead'
+    ? 'Ingeniero de Software y Nube · Líder de IA'
+    : 'Software & Cloud Engineer · AI Lead'
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center section-padding overflow-hidden">

@@ -93,8 +93,8 @@ export default function TunnelTransition({ language, onReveal, onDone, onSkip }:
   const [walking, setWalking] = useState(false)
 
   const copy = language === 'es'
-    ? { kicker: 'Portafolio', role: 'Ingeniero de Software · Líder de IA', button: 'Salir al campo', skip: 'Saltar intro' }
-    : { kicker: 'Portfolio', role: 'Software Engineer · AI Lead', button: 'Take the pitch', skip: 'Skip intro' }
+    ? { kicker: 'Portafolio', role: 'Ingeniero de Software y Nube · Líder de IA', button: 'Salir al campo', skip: 'Saltar intro' }
+    : { kicker: 'Portfolio', role: 'Software & Cloud Engineer · AI Lead', button: 'Take the pitch', skip: 'Skip intro' }
 
   // Overlay entrance
   useEffect(() => {
