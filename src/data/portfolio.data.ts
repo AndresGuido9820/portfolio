@@ -108,42 +108,6 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Pipeline de Datos IoT en AWS',
-    description: {
-      es: 'Pipeline serverless de punta a punta (IoT Core, Lambda, S3, CloudFormation) que recibe telemetría de miles de dispositivos IoT en campo, validando y almacenando mediciones e imágenes sincronizadas para construir un dataset listo para entrenar modelos de visión por computador.',
-      en: 'End-to-end serverless pipeline (IoT Core, Lambda, S3, CloudFormation) receiving telemetry from thousands of IoT devices in the field, validating and storing synchronized measurements and images to build a dataset ready to train computer-vision models.'
-    },
-    tech: ['AWS IoT Core', 'Lambda', 'S3', 'CloudFormation', 'MQTT'],
-    kind: { es: 'Profesional · Sento', en: 'Professional · Sento' },
-    featured: true,
-    category: 'IoT',
-    related: ['Automatización con IA', 'Notificaciones IoT por WhatsApp'],
-  },
-  {
-    name: 'Automatización con IA',
-    description: {
-      es: 'Sistemas con LLMs, RAG y agentes autónomos que ahorran entre 10 y 20 horas de trabajo manual a la semana en compras, reportes y soporte — reportes que tomaban horas ahora salen en minutos. Procesamiento inteligente de documentos y herramientas internas conectadas con APIs externas en pipelines unificados.',
-      en: 'Systems with LLMs, RAG and autonomous agents saving 10–20 hours of manual work per week across procurement, reporting and support — reports that took hours now ship in minutes. Intelligent document processing and internal tools wired to external APIs in unified pipelines.'
-    },
-    tech: ['LLMs', 'RAG', 'Agentes', 'Python', 'FastAPI'],
-    kind: { es: 'Profesional · Sento', en: 'Professional · Sento' },
-    featured: true,
-    category: 'AI',
-    related: ['Pipeline de Datos IoT en AWS'],
-  },
-  {
-    name: 'Notificaciones IoT por WhatsApp',
-    description: {
-      es: 'Servicio de notificaciones y consultas de dispositivos IoT vía WhatsApp, con landing personalizada de acceso por QR para visualizar en vivo la data de los equipos transmisores. Menos fricción para el usuario final en campo.',
-      en: 'Notification and query service for IoT devices over WhatsApp, with a personalized QR-access landing page to view live device data. Less friction for the end user in the field.'
-    },
-    tech: ['Node.js', 'AWS Lambda', 'WhatsApp API', 'QR', 'Serverless'],
-    kind: { es: 'Profesional · Sento', en: 'Professional · Sento' },
-    featured: true,
-    category: 'IoT',
-    related: ['Pipeline de Datos IoT en AWS'],
-  },
-  {
     name: 'IaC Board',
     description: {
       es: 'Diagramas de arquitectura AWS interactivos generados directamente desde archivos Terraform — sin ejecutar nada ni tocar la nube. Parser semántico de .tf, layout automático estilo Sugiyama, canvas SVG con pan/zoom/minimapa, export SVG/PNG e interfaz bilingüe.',
@@ -157,19 +121,6 @@ export const PROJECTS: Project[] = [
     related: ['awscope'],
   },
   {
-    name: 'react-pitch-lines',
-    description: {
-      es: 'Una cancha de fútbol que se dibuja sola, línea por línea — componente React SVG de cero dependencias (Web Animations API), proporcional a una cancha real de 105×68 m y con respeto de prefers-reduced-motion. Extraído de este portafolio y abierto a la comunidad.',
-      en: 'A football pitch that draws itself, line by line — zero-dependency React SVG component (Web Animations API), proportional to a real 105×68 m pitch, honoring prefers-reduced-motion. Extracted from this portfolio and open-sourced.'
-    },
-    tech: ['React', 'TypeScript', 'SVG', 'Web Animations API'],
-    github: 'https://github.com/AndresGuido9820/react-pitch-lines',
-    kind: { es: 'Open source', en: 'Open source' },
-    featured: false,
-    category: 'Web',
-    related: ['IaC Board'],
-  },
-  {
     name: 'awscope',
     description: {
       es: 'CLI interactiva para inspeccionar servicios de AWS desde terminal. Incluye arquitectura por adaptadores, TUI/CLI, modo read-only, documentación, CI y tests para EC2, S3, Lambda y CloudWatch Logs.',
@@ -180,20 +131,7 @@ export const PROJECTS: Project[] = [
     kind: { es: 'Hobby / Open source', en: 'Hobby / Open source' },
     featured: false,
     category: 'Cloud',
-    related: ['git-health'],
-  },
-  {
-    name: 'git-health',
-    description: {
-      es: 'CLI para auditar la salud open source de repositorios Git. Revisa README, licencia, CI, tests, templates, seguridad, changelog y genera reportes accionables con score.',
-      en: 'CLI that audits the open-source health of Git repositories. Checks README, license, CI, tests, templates, security and changelog, producing an actionable report with a score.'
-    },
-    tech: ['Python', 'Typer', 'Rich', 'Git', 'CI'],
-    github: 'https://github.com/AndresGuido9820/git-health',
-    kind: { es: 'Hobby / Open source', en: 'Hobby / Open source' },
-    featured: false,
-    category: 'Research',
-    related: ['awscope'],
+    related: ['IaC Board'],
   },
   {
     name: 'VerdeListo',
@@ -206,33 +144,20 @@ export const PROJECTS: Project[] = [
     kind: { es: 'Hobby', en: 'Hobby' },
     featured: true,
     category: 'Web',
-    related: ['Shop-ecomerce'],
+    related: ['awscope'],
   },
   {
-    name: 'Shop-ecomerce',
+    name: 'Sistema de Transporte Inteligente',
     description: {
-      es: 'Tienda web con Next.js, catálogo, detalle de productos, filtros avanzados, precios especiales por cliente, MongoDB, React Query, validación con Zod y componentes shadcn/ui.',
-      en: 'Web store built with Next.js: catalog, product detail, advanced filters, per-customer special pricing, MongoDB, React Query, Zod validation and shadcn/ui components.'
+      es: 'Sistema inteligente integrado de transporte: predicción de demanda, clasificación de conducción distractiva con visión por computador y recomendación de destinos. Modelos TensorFlow servidos en el navegador con TF.js y demo en vivo en GitHub Pages. Proyecto UNAL 2026.',
+      en: 'Integrated intelligent transport system: demand forecasting, distracted-driving classification with computer vision, and destination recommendation. TensorFlow models served in-browser via TF.js, with a live demo on GitHub Pages. UNAL 2026 project.'
     },
-    tech: ['Next.js', 'TypeScript', 'MongoDB', 'Zod', 'shadcn/ui'],
-    github: 'https://github.com/AndresGuido9820/Shop-ecomerce',
-    kind: { es: 'Hobby', en: 'Hobby' },
-    featured: false,
-    category: 'Web',
-    related: ['VerdeListo'],
-  },
-  {
-    name: 'Microservicios SIA',
-    description: {
-      es: 'Sistema distribuido para gestión de estudiantes, cursos e inscripciones. Usa API Gateway, tres microservicios, PostgreSQL, pgAdmin y Docker Compose para levantar el entorno completo.',
-      en: 'Distributed system for managing students, courses and enrollment. API Gateway, three microservices, PostgreSQL, pgAdmin and Docker Compose for the full environment.'
-    },
-    tech: ['NestJS', 'Docker', 'PostgreSQL', 'Prisma', 'API Gateway'],
-    github: 'https://github.com/AndresGuido9820/Microservicios-sia',
-    kind: { es: 'Académico / Público', en: 'Academic / Public' },
-    featured: false,
-    category: 'Cloud',
-    related: ['VerdeListo'],
+    tech: ['Python', 'TensorFlow', 'TF.js', 'Computer Vision', 'Recommenders'],
+    github: 'https://github.com/AndresGuido9820/sistema-transporte-inteligente',
+    kind: { es: 'Académico · Demo en vivo', en: 'Academic · Live demo' },
+    featured: true,
+    category: 'AI',
+    related: ['Optimización Metaheurística'],
   },
   {
     name: 'Optimización Metaheurística',
@@ -245,7 +170,7 @@ export const PROJECTS: Project[] = [
     kind: { es: 'Académico / Público', en: 'Academic / Public' },
     featured: false,
     category: 'Research',
-    related: [],
+    related: ['Sistema de Transporte Inteligente'],
   },
 ]
 

@@ -12,9 +12,9 @@ gsap.registerPlugin(ScrollTrigger)
 const FILTERS: Array<{ value: Project['category'] | 'All'; label: Record<Lang, string> }> = [
   { value: 'All', label: { es: 'Todo', en: 'All' } },
   { value: 'AI', label: { es: 'IA', en: 'AI' } },
-  { value: 'IoT', label: { es: 'IoT', en: 'IoT' } },
   { value: 'Cloud', label: { es: 'Nube', en: 'Cloud' } },
   { value: 'Web', label: { es: 'Web', en: 'Web' } },
+  { value: 'Research', label: { es: 'Investigación', en: 'Research' } },
 ]
 
 export default function Projects({ language }: { language: Lang }) {
@@ -74,8 +74,8 @@ export default function Projects({ language }: { language: Lang }) {
           label={language === 'es' ? '04 — Proyectos' : '04 — Projects'}
           title={language === 'es' ? 'Jugadas Destacadas' : 'Highlights'}
           subtitle={language === 'es'
-            ? 'Trabajo seleccionado: herramientas públicas, IoT, IA, cloud y automatización.'
-            : 'Selected work: public tools, IoT, AI, cloud, and automation.'}
+            ? 'Mis mejores jugadas open source: cloud, full-stack e investigación — todo con código público.'
+            : 'My best open-source plays: cloud, full-stack and research — all with public code.'}
         />
 
         {/* Filter tabs */}
