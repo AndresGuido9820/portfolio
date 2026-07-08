@@ -24,20 +24,6 @@ export interface Experience {
 
 export const EXPERIENCE: Experience[] = [
   {
-    role: 'AI Implementations Lead',
-    company: 'Sento IOT',
-    location: 'Medellín, Colombia',
-    period: 'Dec 2025 — Present',
-    type: 'full-time',
-    highlights: [
-      'Led company-wide AI integration strategy with LLMs, RAG, and autonomous agents across all business units.',
-      'Deployed end-to-end AI automation pipelines saving 10–20 hours of manual work per week — reports that took hours now ship in minutes.',
-      'Built intelligent document processing systems for automated extraction and structured data generation.',
-      'Defined AI roadmap with leadership, establishing governance standards for ethical production AI.',
-    ],
-    tech: ['Claude API', 'LangChain', 'RAG', 'Python', 'AWS Lambda', 'FastAPI'],
-  },
-  {
     role: 'Software Engineer',
     company: 'Sento IOT',
     location: 'Medellín, Colombia',
@@ -50,6 +36,20 @@ export const EXPERIENCE: Experience[] = [
       'Applied Infrastructure as Code with AWS CloudFormation and CI/CD workflows.',
     ],
     tech: ['AWS IoT Core', 'Lambda', 'CloudFormation', 'MQTT', 'Node.js', 'React', 'DynamoDB'],
+  },
+  {
+    role: 'AI Implementations Lead',
+    company: 'Sento IOT',
+    location: 'Medellín, Colombia',
+    period: 'Dec 2025 — Present',
+    type: 'full-time',
+    highlights: [
+      'Led company-wide AI integration strategy with LLMs, RAG, and autonomous agents across all business units.',
+      'Deployed end-to-end AI automation pipelines saving 10–20 hours of manual work per week — reports that took hours now ship in minutes.',
+      'Built intelligent document processing systems for automated extraction and structured data generation.',
+      'Defined AI roadmap with leadership, establishing governance standards for ethical production AI.',
+    ],
+    tech: ['Claude API', 'LangChain', 'RAG', 'Python', 'AWS Lambda', 'FastAPI'],
   },
   {
     role: 'Full Stack Developer',

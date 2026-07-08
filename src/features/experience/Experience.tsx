@@ -9,19 +9,19 @@ gsap.registerPlugin(ScrollTrigger)
 
 const EXPERIENCE_ES: Array<{ role: string; highlights: string[] }> = [
   {
-    role: 'Líder de Implementaciones con IA',
-    highlights: [
-      'Lidero la estrategia de integración de IA con LLMs, RAG y agentes autónomos en distintas áreas del negocio.',
-      'Despliego pipelines de automatización con IA que ahorran 10–20 horas de trabajo manual a la semana — reportes que tomaban horas ahora salen en minutos.',
-      'Construyo sistemas inteligentes de procesamiento documental para extracción y generación de datos estructurados.',
-    ],
-  },
-  {
     role: 'Ingeniero de Software',
     highlights: [
       'Diseñé arquitectura serverless de microservicios para integrar datos IoT desde plataformas de telemetría.',
       'Construí pipelines en AWS que reciben telemetría de miles de dispositivos IoT para datasets de visión por computador.',
       'Implementé servicios de notificación por WhatsApp y consulta de dispositivos.',
+    ],
+  },
+  {
+    role: 'Líder de Implementaciones con IA',
+    highlights: [
+      'Lidero la estrategia de integración de IA con LLMs, RAG y agentes autónomos en distintas áreas del negocio.',
+      'Despliego pipelines de automatización con IA que ahorran 10–20 horas de trabajo manual a la semana — reportes que tomaban horas ahora salen en minutos.',
+      'Construyo sistemas inteligentes de procesamiento documental para extracción y generación de datos estructurados.',
     ],
   },
   {

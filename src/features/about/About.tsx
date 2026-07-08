@@ -16,7 +16,7 @@ export default function About({ language }: { language: Lang }) {
         subtitle: 'Ingeniero. Constructor. Nube, IA e IoT.',
         paragraph: 'Disfruto el proceso tanto como el resultado: entender el problema, armar la jugada y ejecutarla con calma. Fuera del código, el fútbol me enseñó lo que aplico en ingeniería — visión de juego, trabajo en equipo y tocar simple.',
         education: 'Educación',
-        summary: 'Ingeniero de Sistemas y Computación de la Universidad Nacional de Colombia. En Sento lidero las implementaciones con IA (LLMs, RAG, agentes) y construyo la infraestructura cloud e IoT que las sostiene en producción.',
+        summary: 'Ingeniero de Sistemas y Computación de la Universidad Nacional de Colombia. En Sento soy ingeniero de software: construyo la infraestructura cloud e IoT que corre en producción y, además, lidero las implementaciones con IA (LLMs, RAG, agentes).',
         degree: 'Ingeniería de Sistemas y Computación',
         period: 'Oct 2021 — Jun 2026',
         stats: [
@@ -34,7 +34,7 @@ export default function About({ language }: { language: Lang }) {
         subtitle: 'Engineer. Builder. Cloud, AI, and IoT.',
         paragraph: 'I enjoy the process as much as the result: understanding the problem, shaping the play, and executing it calmly. Off the keyboard, football taught me what I apply to engineering — vision, teamwork, and keeping it simple.',
         education: 'Education',
-        summary: 'Systems and Computer Engineer from Universidad Nacional de Colombia. At Sento I lead AI implementations (LLMs, RAG, agents) and build the cloud/IoT infrastructure that keeps them running in production.',
+        summary: 'Systems and Computer Engineer from Universidad Nacional de Colombia. At Sento I work as a software engineer building the cloud/IoT infrastructure that runs in production, and I also lead AI implementations (LLMs, RAG, agents).',
         degree: EDUCATION.degree,
         period: EDUCATION.period,
         stats: [
@@ -125,13 +125,13 @@ export default function About({ language }: { language: Lang }) {
           <div className="flex flex-col gap-3">
             {(language === 'es'
               ? [
-                  { k: 'Rol actual', v: 'Líder de Implementaciones con IA · Sento' },
+                  { k: 'Rol actual', v: 'Ingeniero de Software · Líder de IA · Sento' },
                   { k: 'Idiomas', v: 'Español nativo · Inglés B2' },
                   { k: 'Base', v: 'Medellín, Colombia · Remoto friendly' },
                   { k: 'Foco', v: 'IA aplicada, cloud e IoT en producción' },
                 ]
               : [
-                  { k: 'Current role', v: 'AI Implementations Lead · Sento' },
+                  { k: 'Current role', v: 'Software Engineer · AI Lead · Sento' },
                   { k: 'Languages', v: 'Native Spanish · English B2' },
                   { k: 'Based in', v: 'Medellín, Colombia · Remote friendly' },
                   { k: 'Focus', v: 'Applied AI, cloud and IoT in production' },
