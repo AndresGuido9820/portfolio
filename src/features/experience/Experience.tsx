@@ -130,33 +130,34 @@ export default function Experience({ language }: { language: Lang }) {
         />
 
         <div ref={containerRef} className="relative">
-          {/* Center vertical line */}
+          {/* Vertical line — left rail on mobile, centered on md+ */}
           <div
-            className="exp-center-line absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
+            className="exp-center-line absolute top-0 bottom-0 w-px left-4 md:left-1/2 -translate-x-1/2"
             style={{
               background: 'linear-gradient(to bottom, var(--ucl-gold), rgba(201,162,39,0.1))',
             }}
           />
 
           {/* Timeline items */}
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-10 md:gap-12">
             {EXPERIENCE.map((exp, index) => {
               const isEven = index % 2 === 0
+              const card = (
+                <div className="timeline-card card-glass p-5 sm:p-6 md:p-8 inline-block text-left transition-all duration-500 hover:scale-[1.02] group w-full md:max-w-lg" style={{ background: 'transparent', backdropFilter: 'none' }}>
+                  <CardContent exp={exp} index={index} language={language} />
+                </div>
+              )
               return (
                 <div key={index} className="relative flex items-start gap-4">
-                  {/* Left content (even) */}
-                  <div style={{ flex: 1, textAlign: 'right' }}>
-                    {isEven && (
-                      <div className="timeline-card card-glass p-6 md:p-8 inline-block text-left transition-all duration-500 hover:scale-[1.02] group max-w-lg" style={{ background: 'transparent', backdropFilter: 'none' }}>
-                        <CardContent exp={exp} index={index} language={language} />
-                      </div>
-                    )}
+                  {/* Desktop left column (even index) */}
+                  <div className="hidden md:block md:flex-1 md:text-right">
+                    {isEven && card}
                   </div>
 
-                  {/* Center node */}
-                  <div className="shrink-0 flex flex-col items-center" style={{ width: '40px' }}>
+                  {/* Node — sits on the rail (mobile) / center (desktop) */}
+                  <div className="shrink-0 flex justify-center relative z-10" style={{ width: '32px' }}>
                     <div
-                      className="exp-node w-4 h-4 rounded-full border-2 z-10"
+                      className="exp-node w-4 h-4 rounded-full border-2 mt-1.5"
                       style={{
                         background: 'var(--ucl-gold)',
                         borderColor: 'var(--ucl-gold-light)',
@@ -165,13 +166,10 @@ export default function Experience({ language }: { language: Lang }) {
                     />
                   </div>
 
-                  {/* Right content (odd) */}
-                  <div style={{ flex: 1 }}>
-                    {!isEven && (
-                      <div className="timeline-card card-glass p-6 md:p-8 inline-block text-left transition-all duration-500 hover:scale-[1.02] group max-w-lg" style={{ background: 'transparent', backdropFilter: 'none' }}>
-                        <CardContent exp={exp} index={index} language={language} />
-                      </div>
-                    )}
+                  {/* Content — mobile shows every card here; desktop shows odd index */}
+                  <div className="flex-1 min-w-0">
+                    <div className="md:hidden">{card}</div>
+                    {!isEven && <div className="hidden md:block">{card}</div>}
                   </div>
                 </div>
               )

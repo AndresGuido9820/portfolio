@@ -49,7 +49,7 @@ function HeroStats({ language }: { language: Lang }) {
   return (
     <div
       ref={ref}
-      className="flex w-fit rounded-xl overflow-hidden"
+      className="flex flex-col sm:flex-row w-full sm:w-fit rounded-xl overflow-hidden"
       style={{
         marginTop: '2.5rem',
         border: '1px solid var(--line)',
@@ -57,15 +57,13 @@ function HeroStats({ language }: { language: Lang }) {
         backdropFilter: 'blur(10px)',
       }}
     >
-      {items.map((item, i) => {
+      {items.map((item) => {
         const Icon = item.icon
         return (
           <div
             key={item.label}
-            className="flex items-center gap-3 px-6 py-4 opacity-0"
-            style={{
-              borderRight: i < items.length - 1 ? '1px solid var(--line)' : 'none',
-            }}
+            className="flex items-center gap-3 px-5 py-3.5 sm:px-6 sm:py-4 opacity-0 border-b last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+            style={{ borderColor: 'var(--line)' }}
           >
             <Icon size={16} style={{ color: '#10B981' }} />
             <div className="flex flex-col">

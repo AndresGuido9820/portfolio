@@ -521,10 +521,17 @@ function PlayerCard({
   )
 }
 
-function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
-  player: Player; pos: { x: number; y: number }; index: number; onClick: () => void; isSelected: boolean; themeColor: string
+function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor, compact = false }: {
+  player: Player; pos: { x: number; y: number }; index: number; onClick: () => void; isSelected: boolean; themeColor: string; compact?: boolean
 }) {
   const [hovered, setHovered] = useState(false)
+  const active = hovered || isSelected
+
+  // Bubbles shrink on the compact (portrait) mobile pitch so 11 nodes + labels fit without overlap.
+  const ring = active ? (compact ? 58 : 80) : (compact ? 50 : 70)
+  const circle = compact ? 46 : 64
+  const idSize = compact ? 17 : 22
+  const initialsFont = player.initials.length > 2 ? (compact ? 11 : 13) : (compact ? 14 : 17)
 
   return (
     <div
@@ -536,7 +543,7 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
         transform: 'translate(-50%, -50%)',
         transition: 'left 0.6s cubic-bezier(0.34,1.56,0.64,1), top 0.6s cubic-bezier(0.34,1.56,0.64,1)',
         transitionDelay: `${index * 0.04}s`,
-        zIndex: hovered || isSelected ? 20 : 10,
+        zIndex: active ? 20 : 10,
         cursor: 'pointer',
       }}
       onMouseEnter={() => setHovered(true)}
@@ -547,10 +554,10 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
       <div
         style={{
           position: 'absolute',
-          width: hovered || isSelected ? '80px' : '70px',
-          height: hovered || isSelected ? '80px' : '70px',
+          width: `${ring}px`,
+          height: `${ring}px`,
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${themeColor}${(hovered || isSelected) ? '4d' : '1f'} 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${themeColor}${active ? '4d' : '1f'} 0%, transparent 70%)`,
           filter: 'blur(4px)',
           transition: 'all 0.3s ease',
         }}
@@ -560,21 +567,21 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
       <div
         className="relative flex items-center justify-center rounded-full font-display select-none"
         style={{
-          width: '64px',
-          height: '64px',
-          background: (hovered || isSelected)
+          width: `${circle}px`,
+          height: `${circle}px`,
+          background: active
             ? `radial-gradient(circle at 35% 30%, ${themeColor}4d, rgba(18,20,24,0.95))`
             : `radial-gradient(circle at 35% 30%, ${themeColor}26, rgba(13,15,18,0.9))`,
-          border: `1.5px solid ${(hovered || isSelected) ? themeColor : themeColor + '73'}`,
+          border: `1.5px solid ${active ? themeColor : themeColor + '73'}`,
           boxShadow: isSelected
             ? `0 0 0 2px ${themeColor}99, 0 0 20px ${themeColor}b3, inset 0 1px 0 rgba(255,255,255,0.2)`
             : (hovered
               ? `0 0 0 1px ${themeColor}80, 0 0 16px ${themeColor}b3, inset 0 1px 0 rgba(255,255,255,0.2)`
               : `0 0 8px ${themeColor}4d, inset 0 1px 0 rgba(255,255,255,0.15)`),
           color: '#ffffff',
-          transform: (hovered || isSelected) ? 'scale(1.15)' : 'scale(1)',
+          transform: active ? 'scale(1.15)' : 'scale(1)',
           transition: 'all 0.25s ease',
-          fontSize: player.initials.length > 2 ? '13px' : '17px',
+          fontSize: `${initialsFont}px`,
           letterSpacing: '0.03em',
           fontWeight: 700,
         }}
@@ -584,7 +591,7 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
         <div
           className="absolute -bottom-1 -right-1 rounded-full flex items-center justify-center font-mono text-white font-bold"
           style={{
-            width: '22px', height: '22px', fontSize: '11px',
+            width: `${idSize}px`, height: `${idSize}px`, fontSize: compact ? '9px' : '11px',
             background: 'rgba(13,15,18,0.95)',
             border: `1.5px solid ${themeColor}b3`,
             boxShadow: `0 0 6px ${themeColor}80`,
@@ -598,11 +605,11 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
       <div
         className="mt-1.5 font-mono uppercase tracking-widest text-center whitespace-nowrap rounded"
         style={{
-          fontSize: '10px',
+          fontSize: compact ? '8px' : '10px',
           background: 'rgba(10,11,13,0.85)',
-          color: (hovered || isSelected) ? '#ffffff' : 'rgba(200,205,210,0.85)',
-          padding: '3px 9px',
-          border: `1px solid ${themeColor}${(hovered || isSelected) ? 'b3' : '4d'}`,
+          color: active ? '#ffffff' : 'rgba(200,205,210,0.85)',
+          padding: compact ? '2px 6px' : '3px 9px',
+          border: `1px solid ${themeColor}${active ? 'b3' : '4d'}`,
           transition: 'all 0.25s ease',
           backdropFilter: 'blur(4px)',
         }}
@@ -631,8 +638,10 @@ function PlayerBubble({ player, pos, index, onClick, isSelected, themeColor }: {
   )
 }
 
-function CoachBubble() {
+function CoachBubble({ compact = false }: { compact?: boolean }) {
   const [hovered, setHovered] = useState(false)
+  const coachCircle = compact ? 44 : 62
+  const coachRing = hovered ? (compact ? 56 : 78) : (compact ? 50 : 68)
 
   return (
     <div
@@ -644,8 +653,8 @@ function CoachBubble() {
       <div
         style={{
           position: 'absolute',
-          width: hovered ? '78px' : '68px',
-          height: hovered ? '78px' : '68px',
+          width: `${coachRing}px`,
+          height: `${coachRing}px`,
           borderRadius: '50%',
           background: `radial-gradient(circle, ${hovered ? 'rgba(201,162,39,0.45)' : 'rgba(201,162,39,0.2)'} 0%, transparent 70%)`,
           filter: 'blur(6px)',
@@ -655,7 +664,7 @@ function CoachBubble() {
       <div
         className="relative flex items-center justify-center rounded-full font-display select-none"
         style={{
-          width: '62px', height: '62px',
+          width: `${coachCircle}px`, height: `${coachCircle}px`,
           background: hovered
             ? 'radial-gradient(circle at 35% 30%, rgba(201,162,39,0.45), rgba(13,15,18,0.97))'
             : 'radial-gradient(circle at 35% 30%, rgba(201,162,39,0.3), rgba(13,15,18,0.95))',
@@ -716,10 +725,11 @@ function CoachBubble() {
   )
 }
 
-function FootballPitch({ children, theme, spotlightPos }: {
+function FootballPitch({ children, theme, spotlightPos, compact = false }: {
   children: React.ReactNode
   theme: CompetitionTheme
   spotlightPos?: { x: number; y: number } | null
+  compact?: boolean
 }) {
   const spotRef = useRef<HTMLDivElement>(null)
 
@@ -743,8 +753,9 @@ function FootballPitch({ children, theme, spotlightPos }: {
       data-field=""
       className="relative w-full overflow-hidden"
       style={{
-        aspectRatio: '16/9',
-        maxHeight: '480px',
+        // Portrait, taller board on phones so the eleven fit vertically; wide broadcast board on tablet/desktop.
+        aspectRatio: compact ? '5 / 7' : '16/9',
+        maxHeight: compact ? 'none' : '480px',
         borderRadius: '14px',
         border: '1px solid rgba(16,185,129,0.35)',
         boxShadow: `0 0 0 1px rgba(${theme.glowRgb},0.12), 0 0 28px rgba(${theme.glowRgb},0.18), 0 26px 60px -24px rgba(0,0,0,0.65), inset 0 0 60px rgba(0,0,0,0.30)`,
@@ -774,7 +785,8 @@ function FootballPitch({ children, theme, spotlightPos }: {
         }}
       />
 
-      {/* Pitch line markings */}
+      {/* Pitch line markings — landscape (tablet/desktop) */}
+      {!compact && (
       <svg viewBox="0 0 1600 900" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
         <rect x="40" y="40" width="1520" height="820" fill="none" stroke="var(--pitch-chalk)" strokeWidth="2.4" />
         <line x1="800" y1="40" x2="800" y2="860" stroke="var(--pitch-chalk)" strokeWidth="2.4" />
@@ -795,6 +807,34 @@ function FootballPitch({ children, theme, spotlightPos }: {
         <path d="M 40 825 A 35 35 0 0 0 75 860" fill="none" stroke="var(--pitch-chalk)" strokeWidth="2" />
         <path d="M 1525 860 A 35 35 0 0 0 1560 825" fill="none" stroke="var(--pitch-chalk)" strokeWidth="2" />
       </svg>
+      )}
+
+      {/* Pitch line markings — portrait (phones). viewBox matches the 5/7 board so lines stay true. */}
+      {compact && (
+      <svg viewBox="0 0 1000 1400" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <rect x="40" y="40" width="920" height="1320" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <line x1="40" y1="700" x2="960" y2="700" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <circle cx="500" cy="700" r="130" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <circle cx="500" cy="700" r="7" fill="var(--pitch-chalk)" />
+        {/* Top goal box */}
+        <rect x="250" y="40" width="500" height="180" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <rect x="390" y="40" width="220" height="70" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        <circle cx="500" cy="160" r="6" fill="var(--pitch-chalk)" />
+        <path d="M 388 220 A 120 120 0 0 0 612 220" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <rect x="420" y="8" width="160" height="32" fill="rgba(255,255,255,0.10)" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        {/* Bottom goal box */}
+        <rect x="250" y="1180" width="500" height="180" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <rect x="390" y="1290" width="220" height="70" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        <circle cx="500" cy="1240" r="6" fill="var(--pitch-chalk)" />
+        <path d="M 388 1180 A 120 120 0 0 1 612 1180" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3.5" />
+        <rect x="420" y="1360" width="160" height="32" fill="rgba(255,255,255,0.10)" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        {/* Corner arcs */}
+        <path d="M 40 75 A 35 35 0 0 1 75 40" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        <path d="M 925 40 A 35 35 0 0 1 960 75" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        <path d="M 40 1325 A 35 35 0 0 0 75 1360" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+        <path d="M 925 1360 A 35 35 0 0 0 960 1325" fill="none" stroke="var(--pitch-chalk)" strokeWidth="3" />
+      </svg>
+      )}
 
       {/* Central ambient stadium light */}
       <div
@@ -891,15 +931,37 @@ export default function Formation({ activeComp = 0, language }: FormationProps) 
   const [activeFormation, setActiveFormation] = useState(0)
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
   const [lineCoords, setLineCoords] = useState<LineCoords | null>(null)
+  // Phones (<768px) render a portrait pitch with transposed positions; the card+connector
+  // only sit beside the pitch at lg (>=1024px), otherwise the card stacks below.
+  const [isCompact, setIsCompact] = useState(false)
+  const [isWide, setIsWide] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const current = FORMATIONS[activeFormation]!
   const theme = COMPETITIONS[activeComp] ?? COMPETITIONS[0]!
   const lineColor = '#34D399'
   const copy = COPY[language]
 
+  useEffect(() => {
+    const compactMq = window.matchMedia('(max-width: 767px)')
+    const wideMq = window.matchMedia('(min-width: 1024px)')
+    const sync = () => { setIsCompact(compactMq.matches); setIsWide(wideMq.matches) }
+    sync()
+    compactMq.addEventListener('change', sync)
+    wideMq.addEventListener('change', sync)
+    return () => {
+      compactMq.removeEventListener('change', sync)
+      wideMq.removeEventListener('change', sync)
+    }
+  }, [])
+
+  // On the portrait pitch we rotate the formation 90° (attack points up): x->y, y->(100-x).
+  const displayPositions = isCompact
+    ? current.positions.map((p) => ({ x: p.y, y: 100 - p.x }))
+    : current.positions
+
   // Derived: pitch coords of the selected player for the spotlight
   const spotlightPos = selectedPlayer
-    ? (current.positions[PLAYERS.findIndex(p => p.id === selectedPlayer.id)] ?? null)
+    ? (displayPositions[PLAYERS.findIndex(p => p.id === selectedPlayer.id)] ?? null)
     : null
 
   const handleSelectPlayer = (player: Player) => {
@@ -939,7 +1001,7 @@ export default function Formation({ activeComp = 0, language }: FormationProps) 
 
   // Measure positions for connector line using field element + player percentage
   useEffect(() => {
-    if (!selectedPlayer || !containerRef.current) { setLineCoords(null); return }
+    if (!selectedPlayer || !containerRef.current || !isWide) { setLineCoords(null); return }
     const measure = () => {
       const cont = containerRef.current
       if (!cont) return
@@ -965,7 +1027,7 @@ export default function Formation({ activeComp = 0, language }: FormationProps) 
     const t = setTimeout(measure, 80)
     return () => clearTimeout(t)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPlayer, activeFormation])
+  }, [selectedPlayer, activeFormation, isWide])
 
   return (
     <section id="formation" className="section-padding relative overflow-hidden">
@@ -1015,10 +1077,10 @@ export default function Formation({ activeComp = 0, language }: FormationProps) 
       <div className="max-w-7xl mx-auto">
         <div
           ref={containerRef}
-          className={`relative flex gap-4 transition-all duration-500 ${selectedPlayer ? 'items-stretch' : ''}`}
+          className={`relative flex flex-col lg:flex-row gap-4 transition-all duration-500 ${selectedPlayer ? 'lg:items-stretch' : ''}`}
         >
-          {/* SVG connector line */}
-          {lineCoords && selectedPlayer && (
+          {/* SVG connector line — only when the card sits beside the pitch (lg+) */}
+          {lineCoords && selectedPlayer && isWide && (
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none"
               style={{ zIndex: 5, overflow: 'visible' }}
@@ -1056,31 +1118,32 @@ export default function Formation({ activeComp = 0, language }: FormationProps) 
           )}
           {/* Pitch */}
           <div
-            className="transition-all duration-500"
-            style={{ flex: '1 1 0', minWidth: 0 }}
+            className="w-full lg:flex-1 transition-all duration-500"
+            style={{ minWidth: 0 }}
           >
-            <FootballPitch theme={theme} spotlightPos={spotlightPos}>
+            <FootballPitch theme={theme} spotlightPos={spotlightPos} compact={isCompact}>
               {PLAYERS.map((player, i) => (
                 <PlayerBubble
                   key={player.id}
                   player={player}
-                  pos={current.positions[i]!}
+                  pos={displayPositions[i]!}
                   index={i}
                   onClick={() => handleSelectPlayer(player)}
                   isSelected={selectedPlayer?.id === player.id}
                   themeColor={lineColor}
+                  compact={isCompact}
                 />
               ))}
-              <CoachBubble />
+              <CoachBubble compact={isCompact} />
             </FootballPitch>
           </div>
 
-          {/* Player card side panel */}
+          {/* Player card side panel — stacks below the pitch until lg */}
           {selectedPlayer && (
             <div
               data-card=""
-              className="transition-all duration-500"
-              style={{ flex: '0 0 340px', width: '340px', minHeight: '480px' }}
+              className="w-full lg:flex-[0_0_340px] lg:w-[340px] transition-all duration-500"
+              style={{ minHeight: '480px' }}
             >
               <PlayerCard
                 player={selectedPlayer}
